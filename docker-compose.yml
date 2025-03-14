@@ -39,18 +39,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: local-kafka
       KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS: kafka:29092
 
-  # Kafdrop UI
-  kafdrop:
-    image: obsidiandynamics/kafdrop:latest
-    container_name: kafdrop
-    restart: always
-    depends_on:
-      - kafka
-    ports:
-      - "9000:9000"
-    environment:
-      KAFKA_BROKERCONNECT: "kafka:29092"
-      JVM_OPTS: "-Xms32M -Xmx64M"
+
 
   # PostgreSQL for Airflow
   postgres:
@@ -70,6 +59,17 @@ services:
       interval: 5s
       retries: 5
 
+  # pgAdmin for PostgreSQL Management
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
   # Redis for Airflow Celery Executor
   redis:
     image: redis:latest
@@ -83,10 +83,26 @@ services:
       timeout: 30s
       retries: 50
 
+  # Grafana for Visualizing Patient Data
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3001:3000"  # Grafana UI 3000 -> 3001
+    depends_on:
+      - redis
+    environment:
+      - GF_INSTALL_PLUGINS=redis-datasource  # Install Redis plugin
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Set default password
+ 
+
   # Base Airflow Configuration
   x-airflow-common:
     &airflow-common
-    image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.0.1}
+    build:
+      context: .
+      dockerfile: Dockerfile 
     environment:
       &airflow-common-env
       AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -101,6 +117,7 @@ services:
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
     user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+    # user: "0:0"   #permettra à Airflow de s'exécuter avec les permissions root
     depends_on:
       redis:
         condition: service_healthy
@@ -111,8 +128,12 @@ services:
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow-webserver
+    depends_on:
+        postgres:
+          condition: service_healthy
+        airflow-init:
+          condition: service_completed_successfully
     command: webserver
-    entrypoint: ["/bin/bash", "-c", "pip install --user faker kafka-python && airflow webserver"]
     ports:
       - "8080:8080"
     healthcheck:
@@ -126,6 +147,11 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     container_name: airflow-scheduler
+    depends_on:
+        postgres:
+          condition: service_healthy
+        airflow-init:
+          condition: service_completed_successfully
     command: scheduler
     restart: always
 
@@ -134,7 +160,6 @@ services:
     <<: *airflow-common
     container_name: airflow-worker
     command: celery worker
-    entrypoint: ["/bin/bash", "-c", "pip install --user faker kafka-python && airflow celery worker"]
     restart: always
 
   # Airflow Init for first-time setup
@@ -144,7 +169,7 @@ services:
     command: version
     environment:
       <<: *airflow-common-env
-      _AIRFLOW_DB_UPGRADE: 'true'
+      _AIRFLOW_DB_MIGRATE: 'true'
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}

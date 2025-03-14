@@ -1,0 +1,7 @@
+pandas
+numpy
+psycopg2-binary
+faker
+kafka-python  # ✅ Corrected kafka package
+confluent-kafka # Contrairement à kafka-python, qui est une implémentation purement en Python, 
+				# confluent-kafka est beaucoup plus efficace en termes de latence et de consommation de CPU
