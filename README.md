@@ -63,7 +63,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
    > **Remarque :** Dans votre dossier `votre-repository`, vous devriez trouver les fichiers et dossiers suivants :
 
-   *Introduire l'image ici*
+   ![Structure du dossier](images/structure_dossir_airflow.PNG)
 
 4. **Accès à l'interface Web Airflow**\
    Connectez-vous à l'interface Web et essayez d'exécuter certaines tâches.
