@@ -37,8 +37,8 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 1. **Cloner le repository**
 
    ```bash
-   git clone https://github.com/votre-repository.git
-   cd votre-repository
+   gh repo clone boumhamdifatima/ChaineStreaming_Docker_Kafka_Airflow_D24
+   cd ChaineStreaming_Docker_Kafka_Airflow_D24
    ```
 
 2. **Initialiser l'environnement**\
@@ -78,7 +78,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 5. **Exécution du DAG de notre solution**
 
    5.1 **Ajouter le fichier DAG**\
-   Placez le fichier `dag_ingestion.py` dans le répertoire `votre-repository/dags` :
+   Placez le fichier `dag_ingestion.py` dans le sous répertoire `dags` :
 
    ```bash
    mv dag_ingestion.py dags
