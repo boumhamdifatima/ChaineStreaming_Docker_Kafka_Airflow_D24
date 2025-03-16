@@ -60,7 +60,9 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
    ```bash
    docker ps
    ```
-
+   
+   ![Liste des Conteneurs](images/liste_conteneurs.PNG)
+	
    > **Remarque :** Dans votre dossier `votre-repository`, vous devriez trouver les fichiers et dossiers suivants :
 
    ![Structure du dossier](images/structure_dossir_airflow.PNG)
@@ -86,6 +88,8 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
 
    - Dans l'interface Web Airflow, repérez le DAG avec l'identifiant **a\_kafka\_redis\_airflow**
    - Activez-le en cliquant sur le bouton d’activation
+   
+   ![Dag active](images/activer_dag.PNG)
 
    5.3 **Explorer le DAG**
 
@@ -138,5 +142,7 @@ Utilisez les identifiants par défaut :
 
 ## Résultats obtenus
 
+### **1. Visualisation des données avec Grafana**
 
+![Visualisation avec Grafana](images/grafana_dashbord.PNG)
 ---
