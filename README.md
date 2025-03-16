@@ -1,12 +1,12 @@
-## Chaine de streaming avec des containers Dockers/Kafka, Airflow\...pour l’analyse des paramètres vitaux des patients
+# Pipeline ETL pour l’analyse des paramètres vitaux des patients
 
-Mettre en place une configuration de streaming afin de traiter des données reçues en continu en utilisant Docker, Kafka, Airflow\...
+Mettre en place d'un Pipeline ETL afin de traiter des données reçues en continu en utilisant Docker, Kafka, Airflow, Redis, Postgres\...
 
-## Description de la Chaine de streaming : Solution ETL pour l’analyse des paramètres vitaux des patients
+## Description de la Pipeline : 
 
-Dans le cadre de la mise en place d’une chaîne de streaming avec des containers Dockers/Kafka et Airflow, nous avons élaboré une solution ETL pour l’analyse des paramètres vitaux des patients.
+Dans le cadre de la mise en place d’une chaîne de streaming avec des containers Dockers/Kafka et Airflow, nous avons élaboré un pipeline ETL pour l’analyse des paramètres vitaux des patients.
 
-En effet, la surveillance continue des patients et l'analyse en temps réel de leurs données vitales sont devenues des impératifs. Les établissements de santé sont confrontés à un volume croissant de données provenant de dispositifs médicaux connectés, de capteurs portables et de systèmes d'information hospitaliers. Pour transformer ces données brutes en informations exploitables et améliorer la prise de décision clinique, une infrastructure de traitement de données robuste et évolutive est indispensable.
+En effet, la surveillance continue des patients et l'analyse en temps réel de leurs données vitaux sont devenues impératives. Les établissements de santé sont confrontés à un volume croissant de données provenant de dispositifs médicaux connectés, de capteurs portables et de systèmes d'information hospitaliers. Pour transformer ces données brutes en informations exploitables et améliorer la prise de décision clinique, une infrastructure de traitement de données robuste et évolutive est rendu indispensable.
 
 ## Architecture réalisée pour notre solution
 
