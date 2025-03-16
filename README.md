@@ -63,7 +63,7 @@ Avant de lancer le projet, assurez-vous d’avoir installé :
    
    ![Liste des Conteneurs](images/liste_conteneurs.PNG)
 	
-   > **Remarque :** Dans votre dossier `votre-repository`, vous devriez trouver les fichiers et dossiers suivants :
+   > **Remarque :** Dans votre dossier `ChaineStreaming_Docker_Kafka_Airflow_D24`, vous devriez trouver les fichiers et dossiers suivants :
 
    ![Structure du dossier](images/structure_dossir_airflow.PNG)
 
