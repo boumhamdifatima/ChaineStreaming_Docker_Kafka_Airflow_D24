@@ -21,7 +21,7 @@ Le pipeline de traitement s'exécute **toutes les 5 minutes** et comprend les é
 4. **Stockage des données dans Redis** sous forme de liste avec la clé **"liste-patients"**.
 5. **Visualisation des données avec Grafana** pour l'analyse des paramètres vitaux stockés dans Redis.
 
-![## Déploiement de la solution](https://img.shields.io/badge/Chaine%20de%20streaming-Blue?style=flat-square&labelColor=blue)
+## Déploiement de la solution
 
 
 ### **Prérequis**
