@@ -136,4 +136,7 @@ Utilisez les identifiants par défaut :
 - Personnalisez l'affichage selon les besoins d'analyse.
 - ...
 
+## Résultats obtenus
+
+
 ---
